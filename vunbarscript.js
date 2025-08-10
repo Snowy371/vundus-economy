@@ -1,39 +1,36 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: #0b1220;
-    color: #fff;
-    margin: 0;
-    padding: 20px;
+let totalGDP = 0;
+let autoGDP = 0;
+
+// Update display
+function updateGDPDisplay() {
+    document.getElementById("totalGDP").textContent = totalGDP;
+    document.getElementById("autoGDP").textContent = autoGDP;
 }
 
-.container {
-    display: flex;
-    flex-direction: column; /* Column layout */
-    gap: 20px;
-    align-items: center;
-}
+// Manual button click
+document.getElementById("gdpButton").addEventListener("click", function() {
+    totalGDP += 1;
+    updateGDPDisplay();
+});
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background: #5f4bb6;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
+// Auto GDP every second
+setInterval(function() {
+    totalGDP += autoGDP;
+    updateGDPDisplay();
+}, 1000);
 
-button:hover {
-    background: #ffd27f;
-    color: #000;
-}
+// Purchases (all ADD GDP now)
+document.querySelectorAll(".purchase").forEach(button => {
+    button.addEventListener("click", function() {
+        let cost = parseInt(this.getAttribute("data-cost"));
+        let gdpIncrease = parseInt(this.getAttribute("data-gdp"));
+        
+        // Instead of subtracting, we add cost to GDP instantly
+        totalGDP += cost;
+        autoGDP += gdpIncrease;
 
-.shop {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background: #2b2f77;
-    padding: 15px;
-    border-radius: 10px;
-}
+        updateGDPDisplay();
+    });
+});
+
+updateGDPDisplay();
