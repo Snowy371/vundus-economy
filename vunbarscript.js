@@ -1,19 +1,39 @@
-let totalGDP = 0;
-let autoGDP = 0;
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #0b1220;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+}
 
-const gdpDisplay = document.getElementById("gdp-display");
-const gdpButton = document.getElementById("gdp-button");
+.container {
+    display: flex;
+    flex-direction: column; /* Column layout */
+    gap: 20px;
+    align-items: center;
+}
 
-gdpButton.addEventListener("click", function() {
-    totalGDP += 1;
-    updateGDPDisplay();
-});
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #5f4bb6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
 
-setInterval(function() {
-    totalGDP += autoGDP;
-    updateGDPDisplay();
-}, 1000);
+button:hover {
+    background: #ffd27f;
+    color: #000;
+}
 
-function updateGDPDisplay() {
-    gdpDisplay.textContent = "GDP: " + totalGDP;
+.shop {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #2b2f77;
+    padding: 15px;
+    border-radius: 10px;
 }
